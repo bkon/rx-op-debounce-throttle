@@ -51,19 +51,43 @@ IN:  abc------def--|
 OUT: a---c----d---f|
 ```
 
+```
+IN:  ab|
+OUT: a---(b|)
+```
+
+Note that an operator suggested at
+https://stackoverflow.com/questions/35957168/rx-debounce-operator-with-first-and-last
+actually has a very different behavior:
+
+```
+IN:  abc---de-f----|
+OUT: a-----d------f|
+```
+
+```
+IN:  abc------def----|
+OUT: a---c----d-----f|
+```
+
+```
+IN:  ab|
+OUT: a-(b|)
+```
+
 # Installation
 
 Use `npm` or `yarn`
 
 ```
-npm install --save rx-op-throttle-debounce
-yarn add rx-op-throttle-debounce
+npm install --save rx-op-debounce-throttle
+yarn add rx-op-debounce-throttle
 ```
 
 # Usage
 
 ```
-import { throttleDebounceLet, throttleDebounceOp } from "rx-op-throttle-debounce";
+import { throttleDebounceLet, throttleDebounceOp } from "rx-op-debounce-throttle";
 
 out$ = in$.let(throttleDebounceLet(100));
 out$ = in$::throttleDebounceOp(100);
@@ -75,3 +99,12 @@ or, if you're feeling lucky:
 Observable.prototype.throttleDebounce = throttleDebounceOp;
 out$ = in$.throttleDebounce(100);
 ```
+
+# RxOp collection
+
+* [rx-op-lossless-throttle](https://github.com/bkon/rx-op-lossless-throttle)
+  - Lossless throttle behavior for RxJS.
+* [rx-op-sliding-window](https://github.com/bkon/rx-op-sliding-window)
+  - "Smooth" sliding window operator for RxJS
+* [rx-op-debounce-throttle](https://github.com/bkon/rx-op-debounce-throttle)
+  - A hybrid debounce + throttle operator for RxJS
