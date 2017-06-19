@@ -3,10 +3,8 @@ import { IScheduler } from "rxjs/Scheduler";
 
 function throttleDebounceOp<T>(
   size: number,
-  scheduler: IScheduler
+  scheduler: IScheduler = Scheduler.async
 ) {
-  scheduler = scheduler || Scheduler.async;
-
   return new Observable((observer) => {
     let done: boolean = false;
     let lastItem: T;
@@ -56,7 +54,7 @@ function throttleDebounceOp<T>(
 
 const throttleDebounceLet = <T>(
   size: number,
-  scheduler: IScheduler
+  scheduler?: IScheduler
 ) => (
   source: Observable<T>
 ): Observable<T> => {

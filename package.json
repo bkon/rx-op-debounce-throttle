@@ -1,6 +1,6 @@
 {
   "name": "rx-op-debounce-throttle",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Debounce/throttle hybrid operator for RxJS",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
