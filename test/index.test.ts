@@ -25,12 +25,12 @@ afterEach(() => {
 describe("throttleDebounce", () => {
   context("when using default async scheduler", () => {
     const subject = (in$: Rx.Observable<number>) =>
-      in$.let(index.throttleDebounceLet(40));
+      in$.let(index.throttleDebounceLet(400));
 
     it("still works as expected", (done) => {
       const result: number[] = [];
 
-      subject(Rx.Observable.interval(10).take(10))
+      subject(Rx.Observable.interval(101).take(10))
         .subscribe(
           (element: number) => {
             result.push(element);
